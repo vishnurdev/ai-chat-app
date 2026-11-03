@@ -8,7 +8,7 @@
 
 **A fast, clean AI chatbot that streams answers in real time — powered by open models on [Groq](https://groq.com) and deployed on Vercel.**
 
-🔗 **Live demo:** _coming soon_
+🔗 **Live demo:** [zeeva-nu.vercel.app](https://zeeva-nu.vercel.app)
 
 ![Zeeva screenshot](docs/chat.png)
 
