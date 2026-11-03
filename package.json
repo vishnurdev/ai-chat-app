@@ -1,0 +1,15 @@
+{
+  "name": "ai-chat-app",
+  "version": "1.0.0",
+  "description": "Fast AI chatbot web app powered by Groq, deployed on Vercel. Zero dependencies.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "test": "node --test tests/chat.test.js tests/markdown.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

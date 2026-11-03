@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zeeva</title>
+  <meta name="description" content="Zeeva – a fast AI assistant powered by Groq. Streaming answers, chat history, multiple models and modes." />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script>
+    // apply the saved theme before the page paints (prevents a flash)
+    try {
+      const t = localStorage.getItem("zeeva:theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.dataset.theme = t;
+    } catch { document.documentElement.dataset.theme = "light"; }
+  </script>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <!-- ===== Sidebar ===== -->
+    <aside id="sidebar" class="sidebar">
+      <div class="side-head">
+        <div class="brand"><img class="logo" src="/logo.png" alt="Zeeva logo" /><span class="brand-name"></span></div>
+        <button id="closeSide" class="icon-btn only-mobile" aria-label="Close menu">✕</button>
+      </div>
+      <button id="newChat" class="new-chat">＋ New chat</button>
+      <nav id="history" class="history" aria-label="Chat history"></nav>
+      <div class="side-foot">
+        <label class="field">
+          <span>Mode</span>
+          <select id="persona"></select>
+        </label>
+        <p class="muted small">Zeeva · powered by Groq</p>
+      </div>
+    </aside>
+    <div id="backdrop" class="backdrop" hidden></div>
+
+    <!-- ===== Main ===== -->
+    <div class="main">
+      <header class="topbar">
+        <div class="top-left">
+          <button id="openSide" class="icon-btn only-mobile" aria-label="Open menu">☰</button>
+          <h1 id="chatTitle" class="chat-title"></h1>
+        </div>
+        <div class="top-right">
+          <select id="model" class="model-pill" aria-label="Model"></select>
+          <button id="theme" class="icon-btn theme-btn" aria-label="Toggle day/night mode" title="Day / night mode">
+            <span class="sun">☀️</span><span class="moon">🌙</span>
+          </button>
+        </div>
+      </header>
+
+      <main id="chat" class="chat" aria-live="polite">
+        <section id="empty" class="empty">
+          <img class="empty-logo" src="/logo.png" alt="" />
+          <h2>How can I help you today?</h2>
+          <div class="suggestions">
+            <button class="chip"><b>Write code</b><span>A Python function that removes duplicates from a list</span></button>
+            <button class="chip"><b>Draft an email</b><span>A polite follow-up email to a client</span></button>
+            <button class="chip"><b>Explain</b><span>What an API is, like I'm a beginner</span></button>
+            <button class="chip"><b>Brainstorm</b><span>5 ideas for a weekend side project</span></button>
+          </div>
+        </section>
+      </main>
+
+      <div class="composer-wrap">
+        <form id="composer" class="composer">
+          <textarea id="input" rows="1" maxlength="4000" required></textarea>
+          <button id="send" type="submit" class="send" aria-label="Send">➤</button>
+          <button id="stop" type="button" class="send stop" aria-label="Stop" hidden>■</button>
+        </form>
+        <p class="hint">Enter to send · Shift+Enter for a new line · AI can make mistakes.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
